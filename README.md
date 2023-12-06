@@ -17,10 +17,14 @@ Requirements:
   - Docker
 
 Run Tests
-- ```docker compose run --rm tests```
+```sh
+docker compose run --rm tests
+```
 
 Run API
-- ```docker compose up --build api```
+```sh
+docker compose up --build api
+```
 
 ### Local Setup
 
@@ -29,12 +33,16 @@ Requirements:
   - Node > 18
 
 Setup Postgres
-- ```docker compose up -d postgres```
+```sh
+docker compose up -d postgres
+```
 
 Sample `.env` file
-- ```
+```sh
 POSTGRES_URL=postgres://accounts:accounts-password@localhost:5432/accounts_db?sslmode=disable
 ```
 
 Run API
-- ```npm start```
+```sh
+npm start
+```
