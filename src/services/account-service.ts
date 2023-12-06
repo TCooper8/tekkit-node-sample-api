@@ -26,6 +26,11 @@ export type Account = {
   deletedAt: Date | null;
 }
 
+export type AccountPage = {
+  rows: Account[];
+  total?: number;
+}
+
 export enum AccountOrderBy {
   CreatedAt = 'createdAt',
   CreatedAtDesc = 'createdAt:desc',
@@ -36,6 +41,7 @@ export type AccountQueryParams = {
   limit?: number;
   orderBy?: string;
   createdBefore?: string;
+  total?: boolean;
 }
 
 export class AccountService {
@@ -111,9 +117,19 @@ export class AccountService {
     return query;
   }
 
-  find = async (auth: Auth, queryParams: AccountQueryParams={}): Promise<Account[]> => {
-    console.log(queryParams);
-    return await this.queryFrom(auth, queryParams).many();
+  find = async (auth: Auth, queryParams: AccountQueryParams={}): Promise<AccountPage> => {
+    const query = this.queryFrom(auth, queryParams);
+
+    if (queryParams.total) {
+      return {
+        rows: await query.many(),
+        total: await query.count(),
+      }
+    }
+
+    return {
+      rows: await query.many(),
+    }
   }
 
   total = async (auth: Auth, queryParams: AccountQueryParams={}): Promise<number> => {

@@ -82,7 +82,8 @@ Sample
 ?limit=1
 ```
 
-| Param | Type | Sample |
-| - | - | - |
-| limit | number | `?limit=32` |
-| createdBefore | datetime | `?createdBefore=2023-12-06T20:55:56.948Z` |
+| Param | Type | Sample | Description |
+| - | - | - | - |
+| limit | number | `?limit=32` | Limits the number of records in the response. |
+| createdBefore | datetime | `?createdBefore=2023-12-06T20:55:56.948Z` | Filters records which were created before the specified datetime. |
+| total | boolean | `?total` | Calculates the total count of the records within the query. Ignores limit. Defaults to true if param key is present, even if empty. |

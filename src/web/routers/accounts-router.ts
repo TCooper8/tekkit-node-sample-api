@@ -1,5 +1,5 @@
 import Router from "koa-router";
-import { AccountInput, AccountService } from "../../services/account-service";
+import { AccountInput, AccountQueryParams, AccountService } from "../../services/account-service";
 import Ajv from 'ajv';
 import { BadRequestError } from "../../errors";
 
@@ -46,16 +46,17 @@ export const AccountsRouter = ({
     await ctx.state.auth.assert();
 
     const auth = ctx.state.auth;
-    const queryParams = ctx.request.query;
+    const queryParams = ctx.request.query as AccountQueryParams;
 
-    const rows = await accountService.find(auth, queryParams);
-    const total = await accountService.total(auth, queryParams);
+    // Validation of query params.
+    if ('total' in queryParams) {
+      queryParams.total = Boolean(JSON.parse(queryParams.total as any || true)) as boolean;
+    }
+
+    const page = await accountService.find(auth, queryParams);
 
     ctx.status = 200;
-    ctx.body = {
-      rows,
-      total,
-    }
+    ctx.body = page;
   });
 
   return router;
