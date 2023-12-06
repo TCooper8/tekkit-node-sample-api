@@ -85,3 +85,4 @@ Sample
 | Param | Type | Sample |
 | - | - | - |
 | limit | number | `?limit=32` |
+| createdBefore | datetime | `?createdBefore=2023-12-06T20:55:56.948Z` |

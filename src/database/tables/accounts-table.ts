@@ -1,4 +1,4 @@
-import { DataSource, EntityManager, Equal, Not, QueryFailedError, SelectQueryBuilder } from "typeorm";
+import { DataSource, EntityManager, Equal, LessThan, Not, QueryFailedError, SelectQueryBuilder } from "typeorm";
 import { AccountEntity } from "./entities/account-entity";
 import { constants } from "../../constants";
 import { ConflictError } from "../../errors";
@@ -97,6 +97,17 @@ export class AccountsQuery {
     return new AccountsQuery(
       this.stmt.orderBy('"account".created_at', direction)
     );
+  }
+
+  /**
+   * For paging by created timestamp. Selects records that were created before the specified time.
+   */
+  whereCreatedBefore = (createdBefore?: string) => {
+    if (!createdBefore) return this;
+    this.stmt = this.stmt.andWhere({
+      createdAt: LessThan(createdBefore),
+    });
+    return this;
   }
 }
 

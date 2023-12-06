@@ -35,6 +35,7 @@ export enum AccountOrderBy {
 export type AccountQueryParams = {
   limit?: number;
   orderBy?: string;
+  createdBefore?: string;
 }
 
 export class AccountService {
@@ -93,6 +94,7 @@ export class AccountService {
     let query =
       this.accountsTable.select()
       .limit(queryParams.limit)
+      .whereCreatedBefore(queryParams.createdBefore)
       // Ensure that permissions are being respected.
       .wherePermissionSubject(subject)
       .wherePermissionAccessLevel(AccountAccessLevel.Read);
@@ -110,6 +112,7 @@ export class AccountService {
   }
 
   find = async (auth: Auth, queryParams: AccountQueryParams={}): Promise<Account[]> => {
+    console.log(queryParams);
     return await this.queryFrom(auth, queryParams).many();
   }
 
