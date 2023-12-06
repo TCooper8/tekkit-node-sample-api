@@ -8,7 +8,7 @@ This is an example API to show the use of typeorm with REST, etc.
 
 | Key | Description | Sample |
 | - | - | - |
-| PORT | The port to run on. | 8080 |
+| PORT | Defaults to 80. The port to run on. | 8080 |
 | POSTGRES_URL | URL connection string to a Postgres database. | n/a |
 
 ### Docker Setup
@@ -16,12 +16,12 @@ This is an example API to show the use of typeorm with REST, etc.
 Requirements:
   - Docker
 
-Run Tests
+Run Docker Tests
 ```sh
 docker compose run --rm tests
 ```
 
-Run API
+Run Docker API
 ```sh
 docker compose up --build api
 ```
@@ -42,7 +42,12 @@ Sample `.env` file
 POSTGRES_URL=postgres://accounts:accounts-password@localhost:5432/accounts_db?sslmode=disable
 ```
 
-Run API
+Run Local Tests
+```sh
+npm test
+```
+
+Run Local API
 ```sh
 npm start
 ```
