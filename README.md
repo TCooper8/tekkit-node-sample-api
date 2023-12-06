@@ -51,3 +51,37 @@ Run Local API
 ```sh
 npm start
 ```
+
+### REST Routes
+
+Authorization: Currently, any string in the `Authorization` will work and act as the user identifier.
+
+Sample Authorization: `bob`
+
+Note:
+> Authorization is used to limit which accounts may be viewed.
+
+| Method | Route | Query Params | Body |
+| - | - | - | - |
+| POST | /api/v1/accounts | n/a | #AccountInput |
+| GET | /api/v1/accounts | #AccountQueryParams | n/a |
+
+## AccountInput
+
+Sample
+```
+{ 
+  "email": "bob@gmail.com"
+}
+```
+
+## AccountQueryParams
+
+Sample
+```
+?limit=1
+```
+
+| Param | Type | Sample |
+| - | - | - |
+| limit | number | `?limit=32` |
