@@ -59,7 +59,6 @@ export class AccountService {
     // Use of a transaction will ensure that all records are created upon success, and that nothing is created upon failure.
     const account = await this.datasource.transaction(async tx => {
       const account = await this.accountsTable.insert(input, tx);
-      console.log('creating-account:%j', account);
       await this.accountPermissionsTable.insertMany(
         // Create default permissions for account creator.
         [
