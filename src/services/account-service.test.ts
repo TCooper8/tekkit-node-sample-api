@@ -7,7 +7,7 @@ import { AccountsTable } from "../database/tables/accounts-table";
 import { AccountPermissionsTable } from "../database/tables/account-permissions-table";
 import { faker } from "@faker-js/faker";
 
-describe.only('account-service', () => {
+describe('account-service', () => {
   it('Should verify auth subject on create.', async () => {
     const accountService = new AccountService(null as any, null as any, null as any); // NOTE: casting values because methods should not be called during this test.
 
