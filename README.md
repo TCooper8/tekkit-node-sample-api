@@ -63,8 +63,8 @@ Note:
 
 | Method | Route | Query Params | Body |
 | - | - | - | - |
-| POST | /api/v1/accounts | n/a | #AccountInput |
-| GET | /api/v1/accounts | #AccountQueryParams | n/a |
+| POST | /api/v1/accounts | n/a | [](#AccountInput) |
+| GET | /api/v1/accounts | [](#AccountQueryParams) | n/a |
 
 ## AccountInput
 
