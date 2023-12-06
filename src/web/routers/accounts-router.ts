@@ -51,7 +51,8 @@ export const AccountsRouter = ({
     const rows = await accountService.find(auth, queryParams);
     const total = await accountService.total(auth, queryParams);
 
-    return {
+    ctx.status = 200;
+    ctx.body = {
       rows,
       total,
     }
