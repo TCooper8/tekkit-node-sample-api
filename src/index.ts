@@ -1,6 +1,7 @@
 import { initDatabase } from './database/init-database';
 import { AccountPermissionsTable } from './database/tables/account-permissions-table';
 import { AccountsTable } from './database/tables/accounts-table';
+import env from './env';
 import { AccountService } from './services/account-service';
 import { AuthService } from './services/auth-service';
 import { WebServer } from './web';
@@ -32,7 +33,7 @@ const main = async () => {
   ];
 
   // Set up web server.
-  const server = new WebServer(80, services);
+  const server = new WebServer(Number.parseInt(env.get('PORT', '80')), services);
   const _server = await server.start();
 
   const cleanup = () => {
