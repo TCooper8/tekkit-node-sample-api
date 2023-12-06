@@ -1,0 +1,10 @@
+# Ignore all hidden files.
+**/\.*
+
+!.dockerignore
+!.gitignore
+
+# Ignore build artifacts.
+node_modules
+build
+coverage
